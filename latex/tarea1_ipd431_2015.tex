@@ -1,7 +1,27 @@
 \documentclass[11pt,twoside,letterpaper]{article}
 
-\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor} % Para los colores
 \usepackage[utf8]{inputenc}
+\usepackage{titlesec} % Se usa para darle color y estilos al formato de las secciones y subsecciones.
+%\usepackage{showframe} % Se usa para ver como estan hecho los margenes de manera de debugear.
+
+%Seteando los margenes
+\usepackage{geometry}
+ \geometry{
+ letterpaper,
+ left=15mm,
+ right=20mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+%Dandole los colores a las secciones.
+\titleformat{\section}{\color{blue}\normalfont\Large\bfseries}{\color{blue}\thesection}{1em}{}
+\titleformat*{\subsection}{\normalfont\large\bfseries\color{BlueViolet}}
+
+%Para ver los números romanos:
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
 
 \begin{document}
 	% Página de titulo.
@@ -11,7 +31,27 @@
 	\maketitle
 	% Fin página de titulo.
 	\newpage
-	proábdfoi
+	
+	\section{Introducción}
+	En el siguiente documento ..
+	
 
+	\section{ Pregunta 1 }
+
+	\subsection{ Enunciado }
+
+	\subsection{ Solución }
+
+	\section{ Pregunta 2 }
+
+	\subsection{ Enunciado }
+
+	\subsection{ Solución }
+
+	\section{ Pregunta 3 }
+
+	\subsection{ Enunciado }
+
+	\subsection{ Solución }
 
 \end{document}
