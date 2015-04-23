@@ -2,9 +2,15 @@
 
 \usepackage[usenames,dvipsnames]{xcolor} % Para los colores
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 \usepackage{titlesec} % Se usa para darle color y estilos al formato de las secciones y subsecciones.
 %\usepackage{showframe} % Se usa para ver como estan hecho los margenes de manera de debugear.
-
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{float}
+\usepackage{enumerate}
 %Seteando los margenes
 \usepackage{geometry}
  \geometry{
@@ -15,6 +21,9 @@
  bottom=20mm,
  }
 
+\graphicspath{ {./images/} }
+
+\renewcommand{\floatpagefraction}{0.75}
 %Dandole los colores a las secciones.
 \titleformat{\section}{\color{blue}\normalfont\Large\bfseries}{\color{blue}\thesection}{1em}{}
 \titleformat*{\subsection}{\normalfont\large\bfseries\color{BlueViolet}}
@@ -35,23 +44,7 @@
 	\section{Introducción}
 	En el siguiente documento ..
 	
-
-	\section{ Pregunta 1 }
-
-	\subsection{ Enunciado }
-
-	\subsection{ Solución }
-
-	\section{ Pregunta 2 }
-
-	\subsection{ Enunciado }
-
-	\subsection{ Solución }
-
-	\section{ Pregunta 3 }
-
-	\subsection{ Enunciado }
-
-	\subsection{ Solución }
-
+	\input{./tex/pregunta1.tex}
+	\input{./tex/pregunta2.tex}
+	\input{./tex/pregunta3.tex}
 \end{document}

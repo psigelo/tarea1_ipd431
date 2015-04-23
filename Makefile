@@ -1,5 +1,14 @@
+all:
+	@mkdir -p latex/img
+	@cd CodigoPython; make
+	@cd latex; make
+	@mv ./latex/tarea1_ipd431_2015.pdf .
+	@echo "\n\nEl pdf resultante se encuentra en ./tarea1_ipd431_2015.pdf"
+
 git:
-	cd latex; make clean
-	git add --all
-	git status
-	git commit -e
+	@rm -f *.pdf
+	@cd latex; make clean
+	@git add --all
+	@git status
+	@git commit -e
+	@git push

@@ -1,5 +1,6 @@
-tex:
-	latex tarea1_ipd431_2015.tex
+latex:
+	pdflatex tarea1_ipd431_2015.tex
 
 clean:
-	rm *.aux *.dvi *.log *.pdf
+	rm -f *.aux *.dvi *.log *.pdf
+	rm -rf img
