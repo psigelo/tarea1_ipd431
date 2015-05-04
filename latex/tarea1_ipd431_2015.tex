@@ -21,30 +21,42 @@
  bottom=20mm,
  }
 
-\graphicspath{ {./images/} }
+\graphicspath{ {./img/} } %Es la ruta que se considerara para buscar las imagenes.
 
 \renewcommand{\floatpagefraction}{0.75}
 %Dandole los colores a las secciones.
 \titleformat{\section}{\color{blue}\normalfont\Large\bfseries}{\color{blue}\thesection}{1em}{}
-\titleformat*{\subsection}{\normalfont\large\bfseries\color{BlueViolet}}
+\titleformat*{\subsection}{\normalfont\large\bfseries\color{blue}}
+\titleformat*{\subsubsection}{\normalfont\large\bfseries\color{blue}}
 
 %Para ver los números romanos:
 \renewcommand{\thesection}{\Roman{section}} 
 \renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\roman{subsubsection}}
+
+
+\newcommand{\treq}[0]{\triangleq} % Usado por el profesor en su documento.
 
 \begin{document}
 	% Página de titulo.
 	\title{Tarea 1 IPD 431}
 	\author{Pascal Sigel\\pascal.sigel@gmail.com}
-	\date{Abril 2015}
+	\date{Mayo 2015}
 	\maketitle
 	% Fin página de titulo.
 	\newpage
 	
 	\section{Introducción}
-	En el siguiente documento ..
+
+	Este documento corresponde a la solución de la tarea 1 del ramo ipd431 realizada el primer semestre 2015, Se expondrán los enunciados y su solución inmediatamente después. Se considerará como trivial cualquier concepto visto en clases lo que significa que no requerirá mayores explicaciones ni el uso de referencias.\newline
+
+	{Todo el contenido necesario para reproducir esta tarea, ya sean los códigos python de la pregunta 2 como el documento latex, se encuentra en el repositorio público de github https://github.com/psigelo/tarea1\_ipd431.}\newline
+
+
+	Las siguientes secciones serán las preguntas con sus respuestas. No existirán conclusiones por no ser necesarias.\newline
 	
 	\input{./tex/pregunta1.tex}
 	\input{./tex/pregunta2.tex}
 	\input{./tex/pregunta3.tex}
+
 \end{document}

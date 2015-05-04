@@ -1,5 +1,137 @@
 \section{ Pregunta 1 }
 
 	\subsection{ Enunciado }
+		Considere una variable aleatoria $X \sim \mathcal{ N } (\mu_X, P_X)$,
+		particionada como $X\treq [ X_1^T \;\; X_2^T \;\; \cdots \;\; X_n^T]^T$ donde
+		$n_{X_1}+n_{X_2}+\cdots +n_{X_n}=n_X$. Entonces:
+		\begin{enumerate}[a)]
+		\item Demuestre que las distribuciones marginales de $X_1, X_2,\cdots, X_n$ son también Gaussianas con medias $\mu_{X_1}, \mu_{X_2}, \cdots, \mu_{X_n}$
+		y matrices de varianza $P_{X_1}, P_{X_2}, \cdots, P_{X_n}$, respectivamente.
+
+
+		\item Demuestre que si además $\lbrace X_1, X_2,\cdots, X_n \rbrace$ son mutuamente no correlacionadas, entonces la función característica de $Z \triangleq X_1+X_2+ \cdots + X_n$, viene dada por
+
+		\begin{equation*}
+		\varphi_{Z}(u) = \varphi_{X_1}(u) \cdot \varphi_{X_2}(u)  \cdots  \varphi_{X_n}(u).
+		\end{equation*}
+
+		\textbf{Observación}: Defínase la función característica para una variable aleatoria multivariada $Z$ como
+
+		\begin{equation*}
+		\varphi_{Z}(u)\triangleq \mathcal{E} \lbrace e^{ju^TZ} \rbrace.
+		\end{equation*}
+
+		\item Use los supuestos y el resultado del punto anterior para demostrar que $Z=X_1+X_2+ \cdots X_n$ es también Gaussiana. Determine además, la media $\mu_Z$ y la matriz de varianza $P_Z$.
+		\end{enumerate}
+
 
 	\subsection{ Solución }
+	\subsubsection{ a) }
+		Antes de comenzar directamente a resolver el problema primero se comenzará a trabajar con la densidad de probabilidades de la v.a. X.
+
+		\begin{equation}
+			f_X(X=x)=\frac{ \exp(-0.5(x-\mu)^TP_X^{-1}(x-\mu)) }{ (2\pi)^{0.5n_x} det(P_X)^{0.5} } 
+			\label{1_a_densidad}
+		\end{equation}
+
+		Sea $X = [X_1^T X_2^T]^T$ de dimensiones arbitrarias (lógicamente suman la dimensión de X y cada una mayor a 0), sea $\vec{a_i} = x_i - \mu_i$ para $i=1,2$, sea 
+
+		\begin{equation}
+			P_X^{-1} = 
+			 \begin{pmatrix}
+			  P_1 & P_2 \\
+			  P_2^T & P3 
+			 \end{pmatrix}
+			 =
+			 \begin{pmatrix}
+			  P_Z^{-1} & P_Z^{-1}P_{\Delta} \\
+			  P_{\Delta}^TP_Z^{-1}  & P3 
+			 \end{pmatrix}
+		\end{equation}
+
+		\begin{equation}
+			det(P_X) = det(P_Z)det(P_{X_2})
+		\end{equation}
+
+		Donde $P_Z$ igualmente definido que en clases como el complemento de schur. Entonces seguiremos trabajando la densidad (\ref{1_a_densidad}) pero sólo el argumento de la exponencial sin el $-0.5$,
+
+		\begin{eqnarray}
+			[a_1^T \; a_2^T]P_X^{-1}[a_1^T \; a_2^T]^T =a_1^T P_Z^{-1} a_1 + a_1^T P_Z^{-1} P_{\Delta} a_2 + a_2^T P_{\Delta}^T P_Z^{-1} a_1 + a_2^T P_3 a_2  \\
+			= (a_1 + P_{\Delta} a_2)^T P_Z^{-1} (a_1 + P_{\Delta} a_2) + a_2^T( P_3 - P_{\Delta} P_Z^{-1} P_{\Delta}) a_2
+			\label{1_a_casiherramienta}
+		\end{eqnarray}
+
+		Aún pdemos terminar de desarrollar la expresión anterior despejando todas las variables intermedias que se crearon $P_3$ y $P_\Delta$, 
+
+		\begin{eqnarray}
+			P_3 = P_{X_2}^{-1} P_{X_2X_1}P_Z^{-1}P_{X_1X_2}P_{X_2}^{-1} + P_{X_2}^{-1} \\
+			P_\Delta = P_{X_1X_2} P_{X_2}^{-1}  \\
+			P_\Delta=P_\Delta^T = P_{X_2}^{-1} P_{X_2X_1}\\
+			\iff P_3 - P_{\Delta} P_Z^{-1} P_{\Delta} = P_{X_2}^{-1}
+		\end{eqnarray}
+
+		Luego, (\ref{1_a_casiherramienta}) se puede escribir como:
+
+		\begin{equation}
+			(a_1 + P_{\Delta} a_2)^T P_Z^{-1} (a_1 + P_{\Delta} a_2) + a_2^TP_{X_2}^{-1} a_2
+			\label{1_a_herramienta}
+		\end{equation}
+
+		Ahora sí se puede afrontar la pregunta en si, lo que se realizará será obtener $f_{X_2}(X_2 = x_2)$ a partir de $f_X(X=x) = f_{X_1,X_2}(X_1=x_1,X_2=x_2)$, se demostrará que es gaussiana y como $X_1$ y $X_2$ son de dimensiones arbitrarias puede repetirse este proceso recursivamente para terminar demostrando que finalmente cada componente será gaussiana.
+
+		\begin{eqnarray}
+			f_{X_2}(X_2=x_1) = \int_{ R^{ n_{ x_2 } } } \frac{ \exp(-0.5[(x_1 - \mu_1)^T \; (x_2 - \mu_2)^T] P_X^{-1}[(x_1 - \mu_1)^T \; (x_2 - \mu_2)^T]^T ) }{ (2\pi)^{0.5n_{x_1}} (2\pi)^{0.5n_{x_1}} det(P_Z)^{0.5}det(P_{X_2})^{0.5} }   dx_1
+			\label{1_1_1}
+		\end{eqnarray}
+
+		Dado el resultado en (\ref{1_a_herramienta}) se puede re-escribir (\ref{1_1_1}) como sigue.
+
+		\begin{eqnarray}
+			f_{X_2}(X_2=x_2) \\
+			= \int_{ R^{ n_{ x_1 } } } \frac{ \exp((x_1 - \mu_1 + P_{\Delta} a_2)^T P_Z^{-1} (x_1 - \mu_1 + P_{\Delta} a_2) + (x_2 - \mu_2)^T P_{X_2}^{-1} (x_2 - \mu_2) )}{ (2\pi)^{0.5n_{x_2}} (2\pi)^{0.5n_{x_1}} det(P_Z)^{0.5}det(P_{X_2})^{0.5} }   dx_1 \\
+			= \frac{ \exp((x_2 - \mu_2)^T P_{X_2}^{-1} (x_2 - \mu_2)) } { (2\pi)^{0.5n_{x_2}} det(P_{X_2})^{0.5} }  \int_{ R^{ n_{ x_1 } } } \frac{ \exp( (x_1 - \mu_1 + P_{\Delta} a_2)^T P_Z^{-1} (x_1 - \mu_1 + P_{\Delta} a_2) ) }{ (2\pi)^{0.5n_{x_1}} det(P_Z)^{0.5} }   dx_1 \\
+			= \frac{ \exp((x_2 - \mu_2)^T P_{X_2}^{-1} (x_2 - \mu_2)) } { (2\pi)^{0.5n_{x_2}} det(P_{X_2})^{0.5} }
+		\end{eqnarray}
+
+		Finalmente se observa que la densidad marginal $f_{X_2}(X_2=x_2)$ es la función densidad del tipo gaussiana con media $\mu_2$ y matriz de varianza $P_{X_2}$. Como este proceso se realizó para $X_1$ y $X_2$ de dimensiones arbitrarias este proceso puede volver a repetirse de forma recursiva para concluir que todas las componentes son gaussianas de medias  y matrices de varianza correspondientes.
+
+	\subsubsection{B}
+	Se comeinza con la definición de $\varphi_{Z}(u)$,
+
+	\begin{eqnarray}
+		\varphi_{Z}(u) = \mathcal{E} \lbrace e^{ju^TZ} \rbrace \\
+		= \mathcal{E} \lbrace e^{ju^T\sum_{i=1}^NX_i} \rbrace \\
+		= \mathcal{E} \lbrace \prod_{i=1}^N e^{ju^TX_i} \rbrace
+	\end{eqnarray}
+
+	Ahora se usa la definición de esperanza, hay que notar que en este momento la parte probabilística son $X_1,...,X_n$, luego
+
+	\begin{eqnarray}
+		\varphi_{Z}(u) = \mathcal{E} \lbrace \prod_{i=1}^N e^{ju^TX_i} \rbrace\\
+		= \int_{R^{n_X}}...\int_{R^{n_X}} f_{X_1,...,X_n}(X_1=x_1,...,X_n=x_n)\prod_{i=1}^N e^{ju^TX_i} dx_1...dx_n \\
+		= \int_{R^{n_X}}...\int_{R^{n_X}} \prod_{i=1}^N f_{X_i}(X_i=x_i)e^{ju^TX_i} dx_1...dx_n \\
+		= \prod_{i=1}^N \int_{R^{n_X}} f_{X_i}(X_i=x_i)e^{ju^TX_i} dx_i \\
+		= \prod_{i=1}^N \varphi_{X_i}(u)
+	\end{eqnarray}
+
+	Notar que en la tercera desigualdad se aplicó independencia. El resultado puede re-escribirse como
+
+	\begin{equation}
+		\varphi_{Z}(u) = \varphi_{X_1}(u) \cdot \varphi_{X_2}(u)  \cdots  \varphi_{X_n}(u)
+	\end{equation}
+
+
+	\subsubsection{C)}
+
+	Se desea demostrar que la sumatoria de gaussianas da como resultado una gaussiana, para eso se nos recomienda el uso de las funciones características. La idea es que dado que el término $e^{ju^TX_i}$ es diferente de cero para todo valor de $X_i$ entonces se tiene que la función de densidad de Z, $f_Z(Z=z)$ se puede obtener como $f_Z(Z=z) = \prod_{i=1}^Nf_{X_i}(X_i=x_i)$
+
+	esto dado que 
+	\begin{eqnarray}
+		\varphi_{Z}(u) = \varphi_{X_1}(u) \cdot \varphi_{X_2}(u)  \cdots  \varphi_{X_n}(u) \\
+		\iff \int_{R^{n_Z}} f_Z(Z=z) e^{ju^TZ} dz = \int_{R^{n_X}}...\int_{R^{n_X}} e^{ju^TZ} \prod_{i=1}^N f_{X_i}(X_i=x_i) dx_1...dx_n
+	\end{eqnarray}
+
+	Luego se tiene que la cantidad de integralesno son importantes por ser esperanzas y en el fondo simbolizan todo el espacio muestral. Se concluye que $f_Z(Z=z) = \prod_{i=1}^Nf_{X_i}(X_i=x_i)$. \newline 
+
+	...
+

@@ -3,4 +3,5 @@ latex:
 
 clean:
 	rm -f *.aux *.dvi *.log *.pdf
-	rm -rf img
+	rm -f ./img/pregunta2_a_beta.pdf
+	rm -f ./img/pregunta2_a_gamma.pdf
