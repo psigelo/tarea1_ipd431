@@ -4,13 +4,13 @@ all:
 	@cd latex; make
 	@cd latex; make
 	@mv ./latex/tarea1_ipd431_2015.pdf .
-	@echo "\n\nEl pdf resultante se encuentra en ./tarea1_ipd431_2015.pdf"
+	@echo "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n=======================================================================================\nTODO OK!, EL PDF ESTÁ LISTO EN ESTA MISMA CARPETA CON NOMBRE tarea1_ipd431_2015.pdf"
 
 latexOnly:
 	@cd latex; make
 	@cd latex; make
 	@mv ./latex/tarea1_ipd431_2015.pdf .
-	@echo "\n\nEl pdf resultante se encuentra en ./tarea1_ipd431_2015.pdf"
+	@echo "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n=======================================================================================\nTODO OK!, EL PDF ESTÁ LISTO EN ESTA MISMA CARPETA CON NOMBRE tarea1_ipd431_2015.pdf"
 
 
 git:

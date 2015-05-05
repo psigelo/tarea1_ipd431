@@ -34,7 +34,7 @@
 			\label{1_a_densidad}
 		\end{equation}
 
-		Sea $X = [X_1^T X_2^T]^T$ de dimensiones arbitrarias (lógicamente suman la dimensión de X y cada una mayor a 0), sea $\vec{a_i} = x_i - \mu_i$ para $i=1,2$, sea 
+		Sea $X = [X_1^T X_2^T]^T$ de dimensiones arbitrarias (lógicamente suman la dimensión de X y cada una mayor a 0), sea $\vec{a_i} = x_i - \mu_i$ para $i=1,2$, se sabe que  
 
 		\begin{equation}
 			P_X^{-1} = 
@@ -49,9 +49,12 @@
 			 \end{pmatrix}
 		\end{equation}
 
-		\begin{equation}
-			det(P_X) = det(P_Z)det(P_{X_2})
-		\end{equation}
+		\begin{eqnarray}
+			det(P_X) = det(P_Z)det(P_{X_2})\\
+			P_3 = P_{X_2}^{-1} P_{X_2X_1}P_Z^{-1}P_{X_1X_2}P_{X_2}^{-1} + P_{X_2}^{-1} \\
+			P_\Delta = P_{X_1X_2} P_{X_2}^{-1}\\
+			P_Z = P_{X_1} - P{X_1 X_2}P_{X_2}^{-1}P{X_2 X_1}
+		\end{eqnarray}
 
 		Donde $P_Z$ igualmente definido que en clases como el complemento de schur. Entonces seguiremos trabajando la densidad (\ref{1_a_densidad}) pero sólo el argumento de la exponencial sin el $-0.5$,
 
@@ -96,7 +99,7 @@
 		Finalmente se observa que la densidad marginal $f_{X_2}(X_2=x_2)$ es la función densidad del tipo gaussiana con media $\mu_2$ y matriz de varianza $P_{X_2}$. Como este proceso se realizó para $X_1$ y $X_2$ de dimensiones arbitrarias este proceso puede volver a repetirse de forma recursiva para concluir que todas las componentes son gaussianas de medias  y matrices de varianza correspondientes.
 
 	\subsubsection{B}
-	Se comeinza con la definición de $\varphi_{Z}(u)$,
+	Se comienza con la definición de $\varphi_{Z}(u)$,
 
 	\begin{eqnarray}
 		\varphi_{Z}(u) = \mathcal{E} \lbrace e^{ju^TZ} \rbrace \\
@@ -123,15 +126,81 @@
 
 	\subsubsection{C)}
 
-	Se desea demostrar que la sumatoria de gaussianas da como resultado una gaussiana, para eso se nos recomienda el uso de las funciones características. La idea es que dado que el término $e^{ju^TX_i}$ es diferente de cero para todo valor de $X_i$ entonces se tiene que la función de densidad de Z, $f_Z(Z=z)$ se puede obtener como $f_Z(Z=z) = \prod_{i=1}^Nf_{X_i}(X_i=x_i)$
-
-	esto dado que 
+	Se desea demostrar que la sumatoria de gaussianas da como resultado una gaussiana, para eso se nos recomienda el uso de las funciones características. La idea es que dado que el término $e^{ju^TX_i}$ es diferente de cero para todo valor de $X_i$ entonces se tiene que la función de densidad de Z, $f_Z(Z=z)$ se puede obtener como $f_Z(Z=z) = \prod_{i=1}^Nf_{X_i}(X_i=x_i)$, esto dado que 
 	\begin{eqnarray}
 		\varphi_{Z}(u) = \varphi_{X_1}(u) \cdot \varphi_{X_2}(u)  \cdots  \varphi_{X_n}(u) \\
-		\iff \int_{R^{n_Z}} f_Z(Z=z) e^{ju^TZ} dz = \int_{R^{n_X}}...\int_{R^{n_X}} e^{ju^TZ} \prod_{i=1}^N f_{X_i}(X_i=x_i) dx_1...dx_n
+		\iff \int_{\Omega} f_Z(Z=z) e^{ju^TZ} dz = \int_{\Omega}\prod_{i=1}^N e^{ju^TX_i} f_{X_i}(X_i=x_i) dx_1...dx_n \\
+		=\int_{\Omega} e^{ju^TZ} \prod_{i=1}^N  f_{X_i}(X_i=x_i) dx_1...dx_n
 	\end{eqnarray}
 
-	Luego se tiene que la cantidad de integralesno son importantes por ser esperanzas y en el fondo simbolizan todo el espacio muestral. Se concluye que $f_Z(Z=z) = \prod_{i=1}^Nf_{X_i}(X_i=x_i)$. \newline 
+	Luego se tiene que la cantidad de integrales no son importantes por ser esperanzas y en el fondo simbolizan todo el espacio muestral. Se concluye que $f_Z(Z=z) = \prod_{i=1}^Nf_{X_i}(X_i=x_i)$. \newline 
 
-	...
+	Para logar el objetivo se trabajará con el término $\prod_{i=1}^Nf_{X_i}(X_i=x_i)$.
+
+	 \begin{eqnarray}
+		 \prod_{i=1}^N  f_{X_i}(X_i=x_i) =  \prod_{i=1}^N \frac{\exp( (x_i - \mu_i)^T P_{X_i}^-1 (x_i - \mu_i) ) }{(2\pi)^{n_x}(det(P_{X_i}))^{0.5}}\\
+		 = \frac{\exp(\sum_{i=1}^N (x_i - \mu_i)^T P_{X_i}^{-1} (x_i - \mu_i) ) }{\prod_{i=1}^N (2\pi)^{n_x} (det(P_{X_i}))^{0.5}}
+	\end{eqnarray}
+
+	\begin{eqnarray} 
+		= \frac{\exp( 
+		 	 \begin{pmatrix}
+			  x_1 - \mu_1 \\
+			  \vdots \\
+			  x_n - \mu_n 
+			 \end{pmatrix}^T
+		 	 \begin{pmatrix}
+			  P_{X_1}^{-1} & 0 & \cdots & 0 \\
+			  0 & P_{X_2}^{-1} &  \ddots & \vdots\\
+			   \vdots & \ddots &\ddots  & 0\\
+			   0 & \cdots &  0 & P_{X_n}^{-1}
+			 \end{pmatrix}
+			 \begin{pmatrix}
+			  x_1 - \mu_1 \\
+			  \vdots \\
+			  x_n - \mu_n 
+			 \end{pmatrix})}{(2\pi)^{0.5\;n\;n_x}\prod_{i=1}^N(det(P_{X_i}))^{0.5}} 
+	\end{eqnarray}
+
+	\begin{eqnarray} 
+		\iff f_Z(Z=z)= \frac{\exp( 
+		 	 \begin{pmatrix}
+			  x_1 - \mu_1 \\
+			  \vdots \\
+			  x_n - \mu_n 
+			 \end{pmatrix}^T
+		 	 \begin{pmatrix}
+			  P_{X_1}^{-1} & 0 & \cdots & 0 \\
+			  0 & P_{X_2}^{-1} &  \ddots & \vdots\\
+			   \vdots & \ddots &\ddots  & 0\\
+			   0 & \cdots &  0 & P_{X_n}^{-1}
+			 \end{pmatrix}
+			 \begin{pmatrix}
+			  x_1 - \mu_1 \\
+			  \vdots \\
+			  x_n - \mu_n 
+			 \end{pmatrix})}{(2\pi)^{0.5\;n\;n_x}\prod_{i=1}^N(det(P_{X_i}))^{0.5}}
+	\end{eqnarray}
+
+	Del resultado anterior se puede concluir que Z es una variable aleatoria gaussiana dado que la matriz de varianza es diagonal por bloques luego el determinante es la productoria de los bloques de la diagonal y la dimensión de la entrada es n veces la dimension de la entrada por lo tanto se cumple probabilidades totales.  Es evidente que la media y la matriz de varianza de Z son las siguiente.
+
+	\begin{eqnarray}
+		\mu_z = \begin{pmatrix}
+			   \mu_1 \\
+			  \vdots \\
+			  \mu_n 
+			 \end{pmatrix}\;\;\;
+		P_Z =  \begin{pmatrix}
+			  P_{X_1}^{-1} & 0 & \cdots & 0 \\
+			  0 & P_{X_2}^{-1} &  \ddots & \vdots\\
+			   \vdots & \ddots &\ddots  & 0\\
+			   0 & \cdots &  0 & P_{X_n}^{-1}
+			 \end{pmatrix}
+	\end{eqnarray}
+
+
+
+
+
+
 

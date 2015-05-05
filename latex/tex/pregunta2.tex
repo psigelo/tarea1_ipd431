@@ -16,17 +16,47 @@
 	\subsection{ Solución }
 
 		\subsubsection {Parte a}
-		|
+		
+			Por simplicidad se definió sólo una variable aleatoria la cual tiene varias realizaciones, el argumento para asumir eso es que cada realización en si es una variable aleatoria iid con el resto de los instantes. Se escogieron las distribuciones beta con parámetros $\beta = 1$ y $\alpha = 5$ y gamma con parámetros shape = 5 y scale = 1. Los resultados obtenidos pueden verse en las figuras (\ref{fig:2_a_beta}) y (\ref{fig:2_a_gamma}).
 
 			\begin{figure}[H]
 			    \centering
 			    \includegraphics[width=0.8\textwidth]{pregunta2_a_beta.pdf}
-			    \caption{Awesome Image}
+			    \caption{En la figura de arriba se observa el histograma de varias realizaciones de una v.a con distribución beta de parámetros $\beta = 1$ y $\alpha = 5$, la figura de abajo muestra el promedio de las realizaciones donde el eje x es la cantidad de realizaciones, la diferencia con la esperanza está representado por la zona coloreada.}
 			    \label{fig:2_a_beta}
 			\end{figure}
+
 			\begin{figure}[H]
 			    \centering
 			    \includegraphics[width=0.8\textwidth]{pregunta2_a_gamma.pdf}
-			    \caption{Awesome Image}
+			    \caption{En la figura de arriba se observa el histograma de varias realizaciones de una v.a con distribución gamma de parámetros shape = 5 y scale = 1, la figura de abajo muestra el promedio de las realizaciones donde el eje x es la cantidad de realizaciones, la diferencia con la esperanza está representado por la zona coloreada.}
 			    \label{fig:2_a_gamma}
 			\end{figure}
+
+			Como se observa de las imagenes anteriores de en ambos casos el promedio de las realizaciones tiende poco a poco a la esperanza calculada de forma teórica.
+
+
+
+		\subsubsection {Parte b}
+			Se escogieron las distribuciones beta con parámetros $\beta = 1$ y $\alpha = 5$ y gamma con parámetros shape = 5 y scale = 1. Los resultados obtenidos pueden verse en las figuras (\ref{fig:2_b_beta}) y (\ref{fig:2_b_gamma}).
+
+			\begin{figure}[H]
+			    \centering
+			    \includegraphics[width=0.8\textwidth]{pregunta2_b_beta.pdf}
+			    \caption{Se presentan cuatro imagenes resultantes de cantidades diferentes de variables aleatorias beta usadas para generar la v.a Z. La linea roja punteada corresponde a la densidad de probabilidades de $\mathcal{ N } (0, 1)$}
+			    \label{fig:2_b_beta}
+			\end{figure}
+
+			\begin{figure}[H]
+			    \centering
+			    \includegraphics[width=0.8\textwidth]{pregunta2_b_gamma.pdf}
+			    \caption{Se presentan cuatro imagenes resultantes de cantidades diferentes de variables aleatorias beta usadas para generar la v.a Z. La linea roja punteada corresponde a la densidad de probabilidades de $\mathcal{ N } (0, 1)$}
+			    \label{fig:2_b_gamma}
+			\end{figure}
+
+			Primero que todo se observa que a medida que la cantidad de variables aleatorias, n, crece más parecida a parecida a una distribución $\mathcal{ N } (0, 1)$ se vuelve la función de densidad de Z. Además rápidamente con n=10 ya parece gaussiana en ambos casos pero entre más grande n mejor se vuelve la aproximación. \newline
+
+			\textbf{Observación:} {\color{red} Todo el contenido necesario para reproducir esta tarea, ya sean los códigos python de la pregunta 2 como el documento latex, se encuentra en el repositorio público de github} \\ 
+
+
+			https://github.com/psigelo/tarea1\_ipd431.

@@ -1,5 +1,94 @@
 \section{ Pregunta 3 }
 
 	\subsection{ Enunciado }
+		Considere dos variables aleatorias escalares i.i.d. $X$ e $Y$, cada una con función de densidad exponencial de media $\mu$. Defina 
 
+		$$Z\triangleq \frac{X+Y}{\max \lbrace X,Y \rbrace}.$$
+
+		Determine la función de densidad $f_Z(z)$.
+
+		\vspace{5mm}
+		\textbf{Sugerencia:} Determine primero la función de distribución $F_Z(z)$ y derive.
 	\subsection{ Solución }
+
+		Primero y para simplificar el análisis posterior se observan los valores factibles de la v.a Z,
+
+		\begin{eqnarray}
+			Z = \frac{X+Y}{\max \lbrace X,Y \rbrace}\\
+			= \frac{\max \lbrace X,Y \rbrace + \min \lbrace X,Y \rbrace}{\max \lbrace X,Y \rbrace}\\
+			=  1 + \frac{\min \lbrace X,Y \rbrace}{\max \lbrace X,Y \rbrace}\\
+			\iff Z \in ]0,1]
+		\end{eqnarray}
+
+		La última igualdad se justifica dado que X e Y son positivos diferentes de 0 (muy cercanos si se desea pero el 0 no es parte del recorrido de X ni Y).\newline
+
+		Para continuar se hará uso de la sugerencia y se planteará $F_Z(u) = P_r\lbrace Z < u \rbrace$, para plantear adecuadamente las expresiones necesarias se comenzará analizando el caso de igualdad Z = u. 
+
+		\begin{eqnarray}
+			Z=u \iff Y = y = \left\{
+			  \begin{array}{l l}
+			    x(u-1) & \quad \text{Si x $>$ y}\\
+			    x/(u-1) & \quad \text{Si y $>$ x}
+			  \end{array} \right.
+		\end{eqnarray}
+
+		Teniendo estos límites se hace más sencillo entender las regiones en las que se cumple $Z < u$, la siguiente imagen muestra estas regiones, notar que la curva $y=x$ separa claramente ambas regiones. 
+
+		\begin{figure}[H]
+		    \centering
+		    \includegraphics[width=0.8\textwidth]{pregunta3.pdf}
+		    \caption{Las regiones $A_1$ y $A_2$ son las regiones para las cuales Z es menor que u.}
+		    \label{fig:3_1}
+		\end{figure}
+
+		Ahora que tenemos las regiones es más fácil calcular $F_Z(u)$
+
+		\begin{eqnarray}
+			F_Z(u) = P_r\{Z < u\} = P_r\{A_1 \cup A_2\} = P_r\{A_1\} + P_r\{A_2\}
+		\end{eqnarray}
+
+		Dadas las simetrías del problema se simplifica aún más.
+
+		\begin{eqnarray}
+			F_Z(u) =  P_r\{A_1\} + P_r\{A_2\} = 2 P_r\{A_1\}
+		\end{eqnarray}
+
+		Por lo tanto basta con calcular $P_r\{A_1\}$.
+
+		\begin{eqnarray}
+			 P_r\{A_1\}=\int_{0}^{\infty} \int_{0}^{x(u-1)}  f_{X,Y}(X=x,Y=y)   dy dx
+		\end{eqnarray}
+
+		Dado que son independientes se puede reemplazar la conjunta por las marginales.
+
+		\begin{eqnarray}
+			 P_r\{A_1\}= \int_{0}^{\infty}f_{X}(X=x) \int_{0}^{x(u-1)}  \lambda \exp(-\lambda y)   dy dx \\
+			=\int_{0}^{\infty} \lambda \exp(-\lambda x)   \left[-\exp(-\lambda y)\right]_{0}^{x(u-1)}   dy dx \\
+			=\int_{0}^{\infty} \lambda \exp(-\lambda x)   \left(-\exp(-\lambda x(u-1)\right) + 1) dy dx\\
+			=\int_{0}^{\infty} -\lambda \exp(-\lambda xu)   + \lambda\exp(-\lambda x) dy dx\\
+			= \left[\frac{1}{u}\exp(-\lambda xu)\right]_{0}^{\infty} -\left[\exp(-\lambda x)\right]_{0}^{\infty} \\
+			=1-\frac{1}{u}\\
+			\iff F_Z(u) = 2\left(1-\frac{1}{u}\right)
+		\end{eqnarray}
+
+		En realidad la expresión anterior fue siempre pensando en que u estaba en el rango de Z, pero esto no es una condición, luego la expresión correcta es.
+
+		\begin{equation}
+			F_Z(u) = \left\{
+			  \begin{array}{l l}
+			    0 & \quad \text{Si u $<$ 1}\\
+			    2\left(1-\frac{1}{u}\right) & \quad \text{Si $1<u\leq2$}\\
+			    1 & \quad \text{Si $u>2$}
+			  \end{array} \right.
+		\end{equation}
+
+		Continuando con la sugerencia se calcula la densidad de probabilidad a partir de la acumulada con el operador derivada.
+
+		\begin{equation}
+			f_z(Z=z) = \left\{
+			  \begin{array}{l l}
+			    0 & \quad \text{Si z $<$ 1}\\
+			    \frac{2}{z^2} & \quad \text{Si $1<z\leq2$}\\
+			    0 & \quad \text{Si $u>2$}
+			  \end{array} \right.
+		\end{equation}
