@@ -83,7 +83,7 @@
 		Ahora sí se puede afrontar la pregunta en si, lo que se realizará será obtener $f_{X_2}(X_2 = x_2)$ a partir de $f_X(X=x) = f_{X_1,X_2}(X_1=x_1,X_2=x_2)$, se demostrará que es gaussiana y como $X_1$ y $X_2$ son de dimensiones arbitrarias puede repetirse este proceso recursivamente para terminar demostrando que finalmente cada componente será gaussiana.
 
 		\begin{eqnarray}
-			f_{X_2}(X_2=x_1) = \int_{ R^{ n_{ x_2 } } } \frac{ \exp(-0.5[(x_1 - \mu_1)^T \; (x_2 - \mu_2)^T] P_X^{-1}[(x_1 - \mu_1)^T \; (x_2 - \mu_2)^T]^T ) }{ (2\pi)^{0.5n_{x_1}} (2\pi)^{0.5n_{x_1}} det(P_Z)^{0.5}det(P_{X_2})^{0.5} }   dx_1
+			f_{X_2}(X_2=x_2) = \int_{ R^{ n_{ x_2 } } } \frac{ \exp(-0.5[(x_1 - \mu_1)^T \; (x_2 - \mu_2)^T] P_X^{-1}[(x_1 - \mu_1)^T \; (x_2 - \mu_2)^T]^T ) }{ (2\pi)^{0.5n_{x_1}} (2\pi)^{0.5n_{x_1}} det(P_Z)^{0.5}det(P_{X_2})^{0.5} }   dx_1
 			\label{1_1_1}
 		\end{eqnarray}
 
@@ -182,7 +182,7 @@
 			 \end{pmatrix})}{(2\pi)^{0.5\;n\;n_x}\prod_{i=1}^N(det(P_{X_i}))^{0.5}}
 	\end{eqnarray}
 
-	Del resultado anterior se puede concluir que Z es una variable aleatoria gaussiana dado que la matriz de varianza es diagonal por bloques luego el determinante es la productoria de los bloques de la diagonal y la dimensión de la entrada es n veces la dimension de la entrada por lo tanto se cumple probabilidades totales.  Es evidente que la media y la matriz de varianza de Z son las siguiente.
+	Del resultado anterior se puede concluir que Z es una variable aleatoria gaussiana dado que la matriz de varianza es diagonal por bloques luego el determinante es la productoria de los bloques de la diagonal y la dimensión de Z es n veces la dimension de X por lo tanto se cumple probabilidades totales.  Es evidente que la media y la matriz de varianza de Z son las siguiente.
 
 	\begin{eqnarray}
 		\mu_z = \begin{pmatrix}
